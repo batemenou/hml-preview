@@ -30,6 +30,7 @@
         .status-pending { background-color: #fee2e2; color: #b91c1c; }
         .status-review { background-color: #dbeafe; color: #1e40af; }
         .status-completed { background-color: #dcfce7; color: #15803d; }
+        .status-cancelled { background-color: #f3f4f6; color: #6b7280; }
 
         .row-hover:hover {
             background-color: #f9fafb;
@@ -39,16 +40,26 @@
             transform: rotate(90deg);
         }
 
-        transition-transform {
-            transition: transform 0.2s ease;
+        .transition-all {
+            transition: all 0.2s ease;
+        }
+
+        /* Custom select styling for better appearance */
+        .custom-select {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+            background-position: right 0.5rem center;
+            background-repeat: no-repeat;
+            background-size: 1.5em 1.5em;
+            padding-right: 2.5rem;
         }
     </style>
 </head>
 <body class="p-4 md:p-8">
 
     <div class="max-w-7xl mx-auto bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
-        <!-- Header Section -->
-        <div class="p-6 border-b border-gray-100 flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <!-- Top Header: Project Info -->
+        <div class="p-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
             <div class="flex items-center gap-4">
                 <div class="bg-blue-600 p-2 rounded-lg">
                     <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path></svg>
@@ -67,13 +78,31 @@
                     </div>
                 </div>
             </div>
+            
+            <div class="flex items-center gap-2 text-sm text-gray-400">
+                <span class="px-3 py-1 bg-gray-100 rounded-full">Project ID: DQ-772</span>
+            </div>
+        </div>
 
+        <!-- Action Bar: Sort, Search, Add -->
+        <div class="px-6 py-4 border-t border-b border-gray-100 bg-white flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <!-- Sort Selector (Left) -->
+            <div class="flex items-center gap-2">
+                <label for="sort-by" class="text-sm font-medium text-gray-500 whitespace-nowrap">Sort by:</label>
+                <select id="sort-by" class="custom-select pl-3 pr-10 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none text-sm bg-white cursor-pointer transition-all">
+                    <option value="default">Default</option>
+                    <option value="section">Section</option>
+                </select>
+            </div>
+
+            <!-- Search and Add (Right) -->
             <div class="flex items-center gap-3">
                 <div class="relative">
-                    <input type="text" placeholder="Search..." class="pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none w-64">
-                    <svg class="w-5 h-5 text-gray-400 absolute left-3 top-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                    <input type="text" placeholder="Search tasks..." class="pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none w-64 text-sm">
+                    <svg class="w-4 h-4 text-gray-400 absolute left-3 top-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
                 </div>
-                <button class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg font-medium flex items-center gap-2 transition-colors">
+
+                <button class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg font-medium text-sm flex items-center gap-2 transition-colors shadow-sm">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
                     ADD TASK
                 </button>
@@ -97,65 +126,74 @@
                     </tr>
                 </thead>
                 <tbody id="task-body">
-                    <!-- SECTION 1 -->
-                    <tr class="section-header bg-gray-50 cursor-pointer border-b border-gray-200" onclick="toggleSection('live-tasks')">
+                    <!-- SECTION 1: SOLAR.STUDY -->
+                    <tr class="section-header bg-gray-50 cursor-pointer border-b border-gray-200" onclick="toggleSection('solar-study')">
                         <td class="px-4 py-3">
-                            <svg id="arrow-live-tasks" class="w-4 h-4 text-gray-500 transition-transform rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                            <svg id="arrow-solar-study" class="w-4 h-4 text-gray-500 transition-transform rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
                         </td>
-                        <td colspan="8" class="px-2 py-3 font-bold text-gray-700">Live Tasks - Work in Progress</td>
+                        <td colspan="8" class="px-2 py-3 font-bold text-gray-700">Solar.study</td>
                     </tr>
                     
-                    <tr class="row-hover border-b border-gray-100 live-tasks-row">
+                    <tr class="row-hover border-b border-gray-100 solar-study-row">
                         <td class="px-4 py-4"></td>
                         <td class="px-4 py-4"><span class="status-badge status-pending">Pending</span></td>
-                        <td class="px-4 py-4"><div class="flex -space-x-2"><div class="w-8 h-8 rounded-full bg-gray-300 border-2 border-white flex items-center justify-center text-xs">BK</div></div></td>
+                        <td class="px-4 py-4"><div class="w-8 h-8 rounded-full bg-gray-300 flex items-center justify-center text-xs">BK</div></td>
                         <td class="px-4 py-4"><div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-xs font-bold text-blue-600">JD</div></td>
                         <td class="px-4 py-4 text-gray-400 flex items-center gap-1"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg> 1</td>
-                        <td class="px-4 py-4 font-medium">Constant Loading Needed...</td>
+                        <td class="px-4 py-4 font-medium">Constant Loading Needed on Dashboard</td>
                         <td class="px-4 py-4 text-gray-500">00:00</td>
                         <td class="px-4 py-4 text-red-600 font-semibold">Jan 28, 2026</td>
-                        <td class="px-4 py-4">
-                            <button class="text-gray-400 hover:text-gray-600"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg></button>
-                        </td>
+                        <td class="px-4 py-4"><button class="text-gray-400 hover:text-gray-600">⋮</button></td>
                     </tr>
 
-                    <!-- SECTION 2 -->
-                    <tr class="section-header bg-gray-50 cursor-pointer border-b border-gray-200" onclick="toggleSection('to-check')">
+                    <!-- SECTION 2: SITES.SOLAR -->
+                    <tr class="section-header bg-gray-50 cursor-pointer border-b border-gray-200" onclick="toggleSection('sites-solar')">
                         <td class="px-4 py-3">
-                            <svg id="arrow-to-check" class="w-4 h-4 text-gray-500 transition-transform rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                            <svg id="arrow-sites-solar" class="w-4 h-4 text-gray-500 transition-transform rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
                         </td>
-                        <td colspan="8" class="px-2 py-3 font-bold text-gray-700">To check</td>
+                        <td colspan="8" class="px-2 py-3 font-bold text-gray-700">Sites.solar</td>
                     </tr>
 
-                    <tr class="row-hover border-b border-gray-100 to-check-row">
+                    <tr class="row-hover border-b border-gray-100 sites-solar-row">
                         <td class="px-4 py-4"></td>
                         <td class="px-4 py-4"><span class="status-badge status-review">In Review</span></td>
                         <td class="px-4 py-4"><div class="w-8 h-8 rounded-full bg-purple-100 flex items-center justify-center text-xs font-bold text-purple-600">MK</div></td>
                         <td class="px-4 py-4"><div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-xs font-bold text-blue-600">BA</div></td>
-                        <td class="px-4 py-4 text-gray-400 flex items-center gap-1"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg> 2</td>
+                        <td class="px-4 py-4 text-gray-400 flex items-center gap-1"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268-2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg> 2</td>
                         <td class="px-4 py-4 font-medium">Update to Client Details and Settings</td>
                         <td class="px-4 py-4 text-gray-500">00:00</td>
                         <td class="px-4 py-4 text-red-600 font-semibold">Nov 26, 2024</td>
-                        <td class="px-4 py-4">
-                            <button class="text-gray-400 hover:text-gray-600"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg></button>
-                        </td>
+                        <td class="px-4 py-4"><button class="text-gray-400 hover:text-gray-600">⋮</button></td>
                     </tr>
 
-                    <tr class="row-hover border-b border-gray-100 to-check-row">
+                    <!-- BOTTOM SECTION: COMPLETED & CANCELLED -->
+                    <tr class="bg-gray-100 border-b border-gray-200">
+                        <td colspan="9" class="px-4 py-1"></td>
+                    </tr>
+
+                    <tr class="row-hover border-b border-gray-100 opacity-60">
                         <td class="px-4 py-4"></td>
                         <td class="px-4 py-4"><span class="status-badge status-completed">Completed</span></td>
                         <td class="px-4 py-4"><div class="w-8 h-8 rounded-full bg-purple-100 flex items-center justify-center text-xs font-bold text-purple-600">MK</div></td>
                         <td class="px-4 py-4"><div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-xs font-bold text-blue-600">BA</div></td>
                         <td class="px-4 py-4 text-gray-400 flex items-center gap-1"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg> 0</td>
-                        <td class="px-4 py-4 font-medium">Create a slider for user feedback</td>
+                        <td class="px-4 py-4 font-medium text-gray-500">Create a slider for user feedback</td>
                         <td class="px-4 py-4 text-gray-500">01:45</td>
-                        <td class="px-4 py-4 text-gray-600">Dec 3, 2025</td>
-                        <td class="px-4 py-4">
-                            <button class="text-gray-400 hover:text-gray-600"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/></svg></button>
-                        </td>
+                        <td class="px-4 py-4 text-gray-400">Dec 3, 2025</td>
+                        <td class="px-4 py-4"><button class="text-gray-400 hover:text-gray-600">⋮</button></td>
                     </tr>
                 </tbody>
             </table>
+        </div>
+
+        <!-- Show More Button -->
+        <div class="p-6 text-center border-t border-gray-100">
+            <button class="inline-flex items-center gap-2 px-6 py-2.5 text-sm font-semibold text-gray-600 hover:text-blue-600 hover:bg-blue-50 border border-gray-200 rounded-lg transition-all group">
+                Show more
+                <svg class="w-4 h-4 transition-transform group-hover:translate-y-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                </svg>
+            </button>
         </div>
 
         <!-- Footer -->
