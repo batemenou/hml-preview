@@ -78,10 +78,6 @@
                     </div>
                 </div>
             </div>
-            
-            <div class="flex items-center gap-2 text-sm text-gray-400">
-                <span class="px-3 py-1 bg-gray-100 rounded-full">Project ID: DQ-772</span>
-            </div>
         </div>
 
         <!-- Action Bar: Sort, Search, Add -->
@@ -91,7 +87,7 @@
                 <label for="sort-by" class="text-sm font-medium text-gray-500 whitespace-nowrap">Sort by:</label>
                 <select id="sort-by" class="custom-select pl-3 pr-10 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none text-sm bg-white cursor-pointer transition-all">
                     <option value="default">Default</option>
-                    <option value="section">Section</option>
+                    <option value="section" selected>Section</option>
                 </select>
             </div>
 
@@ -146,12 +142,36 @@
                         <td class="px-4 py-4"><button class="text-gray-400 hover:text-gray-600">⋮</button></td>
                     </tr>
 
+                    <tr class="row-hover border-b border-gray-100 solar-study-row">
+                        <td class="px-4 py-4"></td>
+                        <td class="px-4 py-4"><span class="status-badge status-pending">Pending</span></td>
+                        <td class="px-4 py-4"><div class="w-8 h-8 rounded-full bg-orange-100 flex items-center justify-center text-xs font-bold text-orange-600">TR</div></td>
+                        <td class="px-4 py-4"><div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-xs font-bold text-blue-600">JD</div></td>
+                        <td class="px-4 py-4 text-gray-400 flex items-center gap-1"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg> 3</td>
+                        <td class="px-4 py-4 font-medium">Integrate API for Real-time Weather Data</td>
+                        <td class="px-4 py-4 text-gray-500">00:00</td>
+                        <td class="px-4 py-4 text-red-600 font-semibold">Feb 5, 2026</td>
+                        <td class="px-4 py-4"><button class="text-gray-400 hover:text-gray-600">⋮</button></td>
+                    </tr>
+
                     <!-- SECTION 2: SITES.SOLAR -->
                     <tr class="section-header bg-gray-50 cursor-pointer border-b border-gray-200" onclick="toggleSection('sites-solar')">
                         <td class="px-4 py-3">
                             <svg id="arrow-sites-solar" class="w-4 h-4 text-gray-500 transition-transform rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
                         </td>
                         <td colspan="8" class="px-2 py-3 font-bold text-gray-700">Sites.solar</td>
+                    </tr>
+
+                    <tr class="row-hover border-b border-gray-100 sites-solar-row">
+                        <td class="px-4 py-4"></td>
+                        <td class="px-4 py-4"><span class="status-badge status-pending">Pending</span></td>
+                        <td class="px-4 py-4"><div class="w-8 h-8 rounded-full bg-gray-300 flex items-center justify-center text-xs">BK</div></td>
+                        <td class="px-4 py-4"><div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-xs font-bold text-blue-600">BA</div></td>
+                        <td class="px-4 py-4 text-gray-400 flex items-center gap-1"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg> 5</td>
+                        <td class="px-4 py-4 font-medium">Responsive Layout Fix for Tablet Devices</td>
+                        <td class="px-4 py-4 text-gray-500">00:00</td>
+                        <td class="px-4 py-4 text-gray-600">Feb 12, 2026</td>
+                        <td class="px-4 py-4"><button class="text-gray-400 hover:text-gray-600">⋮</button></td>
                     </tr>
 
                     <tr class="row-hover border-b border-gray-100 sites-solar-row">
@@ -163,6 +183,18 @@
                         <td class="px-4 py-4 font-medium">Update to Client Details and Settings</td>
                         <td class="px-4 py-4 text-gray-500">00:00</td>
                         <td class="px-4 py-4 text-red-600 font-semibold">Nov 26, 2024</td>
+                        <td class="px-4 py-4"><button class="text-gray-400 hover:text-gray-600">⋮</button></td>
+                    </tr>
+
+                    <tr class="row-hover border-b border-gray-100 sites-solar-row">
+                        <td class="px-4 py-4"></td>
+                        <td class="px-4 py-4"><span class="status-badge status-review">In Review</span></td>
+                        <td class="px-4 py-4"><div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-xs font-bold text-blue-600">BA</div></td>
+                        <td class="px-4 py-4"><div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-xs font-bold text-blue-600">JD</div></td>
+                        <td class="px-4 py-4 text-gray-400 flex items-center gap-1"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg> 0</td>
+                        <td class="px-4 py-4 font-medium">Project Flow Builder Integration</td>
+                        <td class="px-4 py-4 text-gray-500">00:00</td>
+                        <td class="px-4 py-4 text-red-600 font-semibold">Dec 8, 2025</td>
                         <td class="px-4 py-4"><button class="text-gray-400 hover:text-gray-600">⋮</button></td>
                     </tr>
 
@@ -180,6 +212,30 @@
                         <td class="px-4 py-4 font-medium text-gray-500">Create a slider for user feedback</td>
                         <td class="px-4 py-4 text-gray-500">01:45</td>
                         <td class="px-4 py-4 text-gray-400">Dec 3, 2025</td>
+                        <td class="px-4 py-4"><button class="text-gray-400 hover:text-gray-600">⋮</button></td>
+                    </tr>
+
+                    <tr class="row-hover border-b border-gray-100 opacity-60">
+                        <td class="px-4 py-4"></td>
+                        <td class="px-4 py-4"><span class="status-badge status-completed">Completed</span></td>
+                        <td class="px-4 py-4"><div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-xs font-bold text-blue-600">BA</div></td>
+                        <td class="px-4 py-4"><div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-xs font-bold text-blue-600">JD</div></td>
+                        <td class="px-4 py-4 text-gray-400 flex items-center gap-1"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg> 1</td>
+                        <td class="px-4 py-4 font-medium text-gray-500">Optimize Database Indexing</td>
+                        <td class="px-4 py-4 text-gray-500">04:20</td>
+                        <td class="px-4 py-4 text-gray-400">Jan 10, 2026</td>
+                        <td class="px-4 py-4"><button class="text-gray-400 hover:text-gray-600">⋮</button></td>
+                    </tr>
+
+                    <tr class="row-hover border-b border-gray-100 opacity-60">
+                        <td class="px-4 py-4"></td>
+                        <td class="px-4 py-4"><span class="status-badge status-cancelled">Cancelled</span></td>
+                        <td class="px-4 py-4"><div class="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center text-xs">?</div></td>
+                        <td class="px-4 py-4"><div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-xs font-bold text-blue-600">JD</div></td>
+                        <td class="px-4 py-4 text-gray-400 flex items-center gap-1"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg> 0</td>
+                        <td class="px-4 py-4 font-medium text-gray-400">Deprecated API Integration for Maps</td>
+                        <td class="px-4 py-4 text-gray-500">--</td>
+                        <td class="px-4 py-4 text-gray-400">Nov 29, 2025</td>
                         <td class="px-4 py-4"><button class="text-gray-400 hover:text-gray-600">⋮</button></td>
                     </tr>
                 </tbody>
